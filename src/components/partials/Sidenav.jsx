@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 const Sidenav = () => {
   return (
     <div className='w-[20%] h-full border-r-2 border-zinc-400 p-3'>
+   
       <h1 className='text-2xl text-white font-bold'>
         <i className="ri-reactjs-fill text-[#6556CD] mr-3"></i>
         <span>Akshat Sinha</span>
       </h1>
 
+   
       <nav className='flex flex-col text-zinc-400 text-xl gap-3'>
         <h1 className='text-white font-semibold text-xl mt-10 mb-5'>
           New Feeds
@@ -35,8 +37,10 @@ const Sidenav = () => {
         </Link>
       </nav>
 
+       
       <hr className='border-transparent h-[1px] bg-zinc-400' />
 
+       
       <nav className='flex flex-col text-zinc-400 text-xl gap-3'>
         <h1 className='text-white font-semibold text-xl mt-10 mb-5'>
           Website Info.
@@ -50,6 +54,7 @@ const Sidenav = () => {
           Contact Us
         </Link>
       </nav>
+   
     </div>
   )
 }

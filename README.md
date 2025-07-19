@@ -1,12 +1,21 @@
-# React + Vite
+//npm i react-router-dom axios react-player react-infinte-scroll-component @reduxjs/toolkit react-redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+//npm i bta , routes samjaha , custom titile in index , 
 
-Currently, two official plugins are available:
+//sidenav bna (Heading, NAv1 horizontal line , NAv2) Link tag use kia hai..?
+The Link tag from react-router-dom to enable client-side navigation between different routes in your React application. Unlike a regular <a> tag, Link prevents full page reloads and keeps your app fast and responsive by updating the URL and rendering the corresponding component without refreshing the browser.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+//top nav - ek search bar hai , or ek drop down hai jo ki kuch likne per aata hai , cross se saraa data clear hota hai ek customise scroller dia hua hai , if no image then custom image hai  how..?
+*query: Stores the current search input.
+searches: Stores the array of search results.
+*GetSerches:- FunctionAsync function that calls the /search/multi API with the current query.Updates searches with the results.
+useEffect:-Runs GetSerches every time query changes (i.e., on every keystroke).
+*Return JSX:-Container <div>: Styles the top navigation bar.
+Search Icon: Decorative icon.  Input Field:Updates query on change Displays current query.
+Close Icon:Only shows if query.length > 0. Clicking it clears the search input.
+Suggestions Dropdown:
+Always visible (currently). Maps over searches and displays each result as a clickable Link. Shows an image (from API or fallback) and the title/name.
 
-## Expanding the ESLint configuration
+//headers:- kn poster hai ,paragraph hai ,realse dtae etc hai, or watch now button hai.Get random wallpaper ka code App.jsx me hai, vaha se data props k through aata hai..
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+// trending and Dropdown button

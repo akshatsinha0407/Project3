@@ -1,16 +1,19 @@
-  import React, { useEffect, useState } from 'react';
+   import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../../utils/axios';
-
+import noimage from '/noimage.webp'
 const Topnav = () => {
 
 
   const [query, setQuery] = useState("");
+  const [searches, setsearches] = useState([] )
 
   const GetSerches = async () => {
     try {
-      const d = await axios.get(`/search/multi?query=${query}`);
-      console.log(d);
+      const {data}= await axios.get(`/search/multi?query=${query}`);
+       
+      setsearches(data.results)
+console.log(data.results)
     } catch (error) {
       console.log("error: ", error);
     }
@@ -25,7 +28,7 @@ const Topnav = () => {
 
 
   return (
-    <div className='w-full h-[10vh] relative flex justify-start ml-[160px] items-center'>
+    <div className='w-[89%] h-[10vh] relative flex justify-start ml-[160px]   items-center'>
       <i className="ri-search-line text-3xl text-zinc-400"></i>
       <input
         onChange={(e) => setQuery(e.target.value)}
@@ -41,14 +44,31 @@ const Topnav = () => {
         ></i>
       }
 
-      {/* Suggestion */}
-      <div className='absolute w-[50%] max-h-[50vh] overflow-auto bg-zinc-200 top-[90%] left-[160px]'>
-        {/* 
-        <Link className='hover:text-black hover:bg-zinc-300 duration-300 inline-block text-zinc-600 w-[100%] p-8 font-semibold justify-start border-b-2 border-zinc-100 items-center'>
-          <img src="" alt="" />
-          <span>Hloo jiii</span>
-        </Link>
-        */}
+      
+      <div className='absolute w-[50%] max-h-[50vh] overflow-auto bg-zinc-200 top-[90%] left-[100px]'>
+        {  searches.map((s,i)=>(
+
+           <Link key={i} className='hover:text-black flex-row flex hover:bg-zinc-300 duration-300  text-zinc-600 w-[100%] p-8 font-semibold justify-start border-b-2 border-zinc-100 items-center'>
+          <img
+          className='w-[10vh] h-[10vh] object-cover rounded mr-5 shadow-lg'
+          src={
+            s.backdrop_path ||
+            s.profile_path ?
+            `https://image.tmdb.org/t/p/original/${s.backdrop_path || s.profile_path}`
+          : noimage
+          }
+           alt="" />
+         
+         
+         
+          <span>{s.original_title || s.name ||  s.original_name  ||  s.title }</span>
+    
+    
+    
+    </Link>
+
+        ))}
+        
       </div>
     </div>
   );
