@@ -48,8 +48,8 @@ const Home = () => {
 
 
 
-        <div className=' p-5 flex justify-between'>
-          <h1 className='text-2xl text-zinc-400 font-semibold '>Trending</h1>
+        <div className=' mt-4  flex justify-between'>
+          <h1 className='text-2xl text-zinc-400 font-semibold ml-4'>Trending</h1>
           <Dropdown
             title="Filter"
             options={["tv", "movie", "all"]} func ={(e)=> setCategory(e.target.value)}// 🔧 Added this

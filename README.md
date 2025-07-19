@@ -16,6 +16,12 @@ Close Icon:Only shows if query.length > 0. Clicking it clears the search input.
 Suggestions Dropdown:
 Always visible (currently). Maps over searches and displays each result as a clickable Link. Shows an image (from API or fallback) and the title/name.
 
-//headers:- kn poster hai ,paragraph hai ,realse dtae etc hai, or watch now button hai.Get random wallpaper ka code App.jsx me hai, vaha se data props k through aata hai..
+//headers:- kn poster hai ,paragraph hai ,realse date etc hai, or watch now button hai.Get random wallpaper ka code App.jsx me hai, vaha se data props k through aata hai..
 
 // trending and Dropdown button
+-> trending k lie we have created horizontal cards..
+-> horizontal card me photo laga di , title laga dia , paragrah jod di, jada bada tha to limit dedi , ".slice" se.. , data is again comming from props
+->dropdown bna dia hai :- we have( title, options , func )
+title = tile bta rha hai orrr ye select se wrapped hai
+titles se jo options aa rahe hai un per map laga dia
+or data props se aa rha hai jiska na func hai
