@@ -5,6 +5,7 @@ import axios from '../utils/axios';
 import Header from './partials/Header';
 import HorizontalsCards from './partials/HorizontalsCards';
 import Dropdown from './partials/Dropdown';
+import Loading from './partials/Loading';
 
 const Home = () => {
   document.title = "Akshat Sinha";
@@ -67,7 +68,7 @@ const Home = () => {
       </div>
     </>
   ) : (
-    <h1>Loading..</h1>
+    <Loading />
   );
 };
 

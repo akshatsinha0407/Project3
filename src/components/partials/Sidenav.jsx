@@ -15,23 +15,32 @@ const Sidenav = () => {
         <h1 className='text-white font-semibold text-xl mt-10 mb-5'>
           New Feeds
         </h1>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link 
+        to="/trending" 
+        className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-fire-fill pr-2"></i>
           Trending
         </Link>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link
+         to="/popular" 
+        
+        className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-sparkling-2-fill pr-2"></i>
           Popular
         </Link>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link 
+        to="/movie"
+        className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-movie-2-ai-line pr-2"></i>
           Movies
         </Link>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link to="/tvshows"
+         className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-tv-line pr-2"></i>
           TV Show's
         </Link>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link to="/celebs"
+        className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-user-star-fill pr-2"></i>
           Celebs
         </Link>
@@ -45,11 +54,12 @@ const Sidenav = () => {
         <h1 className='text-white font-semibold text-xl mt-10 mb-5'>
           Website Info.
         </h1>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link to="/about"
+         className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-information-fill pr-2"></i>
           About
         </Link>
-        <Link className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
+        <Link to="/contact" className='hover:bg-[#6556CD] duration-300 p-5 rounded hover:text-white'>
           <i className="ri-contacts-fill pr-2"></i>
           Contact Us
         </Link>
