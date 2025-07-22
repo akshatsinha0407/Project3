@@ -84,7 +84,7 @@ const Tvshows = () => {
                     </div>
                 }
             >
-                <Cards data={tvshows} title={category} />
+                <Cards data={tvshows} title="tv" />
             </InfiniteScroll>
 
         </div>

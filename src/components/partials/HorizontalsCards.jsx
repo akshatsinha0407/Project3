@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 
 const HorizontalsCards = ({data }) => {
     
+  console.log(data)
   return (
     <div className='w-full h-[40vh] flex overflow-y-hidden mb-5 p-5'>
       {data.map((d,i)=> 
-        <div key={i} className='min-w-[15%] h-full mr-5 bg-zinc-900 mb-5 rounded-lg overflow-hidden flex flex-col'>
+        <Link to={`/${d.media_type}/details/${d.id}`} key={i} className='min-w-[15%] h-full mr-5 bg-zinc-900 mb-5 rounded-lg overflow-hidden flex flex-col'>
           <img 
             className='w-full h-[60%] object-cover' 
             src={`https://image.tmdb.org/t/p/original/${
@@ -29,7 +30,7 @@ const HorizontalsCards = ({data }) => {
               <span className='text-zinc-400 hover:text-white cursor-pointer'> more</span>
             </p>
           </div>
-        </div> 
+        </Link> 
       )}
     </div>
   )

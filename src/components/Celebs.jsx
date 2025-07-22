@@ -74,7 +74,7 @@ const Celebs = () => {
                     </div>
                 }
             >
-                <Cards data={celebs} title={category} />
+                <Cards data={celebs} title="person" />
             </InfiniteScroll>
         </div>
     ) : (

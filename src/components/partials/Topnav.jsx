@@ -41,7 +41,7 @@ const Topnav = () => {
       {query.length > 0 && (
         <div className='absolute w-[50%] max-h-[50vh] overflow-auto bg-zinc-800 rounded-lg shadow-2xl top-[90%] left-[100px] border border-zinc-600'>
           {searches.map((s,i)=>(
-            <Link key={i} className='hover:text-white flex hover:bg-zinc-700 duration-300 text-zinc-300 w-full p-6 font-semibold justify-start border-b border-zinc-700 items-center'>
+            <Link to={`/${s.media_type}/details/${s.id}`} key={i} className='hover:text-white flex hover:bg-zinc-700 duration-300 text-zinc-300 w-full p-6 font-semibold justify-start border-b border-zinc-700 items-center'>
               <img
                 className='w-[8vh] h-[8vh] object-cover rounded-lg mr-4 shadow-lg'
                 src={

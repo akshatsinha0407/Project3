@@ -84,7 +84,7 @@ const Movie = () => {
                     </div>
                 }
             >
-                <Cards data={movie} title={category} />
+                <Cards data={movie} title="movie" />
             </InfiniteScroll>
 
         </div>

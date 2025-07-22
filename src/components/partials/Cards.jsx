@@ -1,11 +1,12 @@
- import React from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 const Cards = ({data, title}) => {
+    console.log(title)
   return (
     <div className='flex flex-wrap items-center justify-center gap-[5%] bg-[#1f1e24] w-full h-full'>
         {data.map((c, i) => (
-            <Link 
+            <Link to={`/${c.media_type || title}/details/${c.id}`}
                 className='relative w-[28vh] mb-[5%] hover:scale-105 transition-transform duration-300' 
                 key={i}
             >
