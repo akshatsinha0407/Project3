@@ -45,8 +45,8 @@ const Moviedetail = () => {
                  target='_blank' href={`https://www.imdb.com/title/${info.externalid.imdb_id}`}>imdb</a>
             </nav>
 
-            {/* Poster and  */}
-            <div className='w-full '>
+            {/* Poster and detail  */}
+            <div className='w-full flex '>
                  
                  <img
                      className='shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] hover:shadow-[8px_17px_38px_2px_rgba(101,86,205,0.3)] h-[40vh] items-center justify-center object-cover rounded-lg transition-shadow duration-300'
@@ -55,6 +55,41 @@ const Moviedetail = () => {
                       }`}
                      alt=""
                  />
+                 
+                 <div className='content ml-[5%]' >
+                      <h1 className='text-5xl font-bold text-zinc-100'>
+                        {
+                        info.details.original_title ||
+                        info.details.original_name ||
+                        info.details.title ||
+                        info.details.name
+                        }
+                        <small className='text-lg text-zinc-300 font-normal  '>
+                          ({info.details.release_date ? info.details.release_date.split('-')[0] : info.details.first_air_date ? info.details.first_air_date.split('-')[0] : 'N/A'})
+                        </small>
+                      </h1>
+                      
+                         
+                   <div className='flex text-zinc-100 items-center gap-4'>
+                      <span className='text-white justify-center  right-[-10%]  bottom-[20%]  flex items-center   bg-yellow-500 w-[5vh] h-[5vh] rounded-full   text-xl font-semibold'>
+                    {(info.details.vote_average*10).toFixed()} <sup>%</sup>
+                    </span> 
+                       <h1 >User Score</h1>
+                      <h1>{info.details.release_date}</h1>
+                      <h1>
+                        {info.details.genres.map((g)=>g.name).join(", ")}
+                      </h1>
+                      <h1>{info.details.runtime}min</h1>
+                  </div>
+
+                  <h1 className='text-xl font-semibold italic text-zinc-200'>
+                    {info.details.tagline}
+                  </h1>
+                  <h1 className='text-2xl mb-3 mt-5 text-zinc-200'>Overview</h1>
+                    <p className='text-zinc-200'>{info.details.overview}</p>  
+
+
+                  </div>
                 
         </div>
  
@@ -83,6 +118,7 @@ const Moviedetail = () => {
 
 {/*rent*/}
 
+
           
                    
              </div>
@@ -94,3 +130,4 @@ const Moviedetail = () => {
 };
 
 export default Moviedetail;
+ 
