@@ -6,8 +6,8 @@ const HorizontalsCards = ({data }) => {
   console.log(data)
   return (
     <div className='w-full h-[40vh] flex overflow-y-hidden mb-5 p-5'>
-      {data.map((d,i)=> 
-        <Link to={`/${d.media_type}/details/${d.id}`} key={i} className='min-w-[15%] h-full mr-5 bg-zinc-900 mb-5 rounded-lg overflow-hidden flex flex-col'>
+      {data.length > 0 ? data.map((d,i)=> 
+        <Link to={`/${d.media_type}/details/${d.id}`} key={i} className='min-w-[15%] h-full mr-5 bg-zinc-900 mb-5 rounded-lg overflow-hidden flex flex-col hover:shadow-lg hover:shadow-[#875fc1] hover:scale-105 transition-all duration-300'>
           <img 
             className='w-full h-[60%] object-cover' 
             src={`https://image.tmdb.org/t/p/original/${
@@ -31,7 +31,7 @@ const HorizontalsCards = ({data }) => {
             </p>
           </div>
         </Link> 
-      )}
+      ): <h1 className='text-white text-3xl mt-6 text-center' >Nothing to Show</h1>} 
     </div>
   )
 }
