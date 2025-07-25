@@ -1,22 +1,22 @@
  import React from 'react'
-import { asyncloadtv, removetv } from '../store/actions/tvAction';
+import { asyncloadmovie, removemovie } from '../store/actions/movieAction';
 import { useParams, Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Loading from './partials/Loading';
 import HorizontalCards from './partials/HorizontalsCards'
 
-const tvdetail = () => {
+const moviedetail = () => {
   const { pathname } = useLocation();
   const { id } = useParams();
-  const { info } = useSelector((state) => state.tv);
+  const { info } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(asyncloadtv(id));
+    dispatch(asyncloadmovie(id));
     return () => {
-      dispatch(removetv());
+      dispatch(removemovie());
     };
   }, [id, dispatch]);
 
@@ -143,7 +143,7 @@ const tvdetail = () => {
       <hr className='border-zinc-600 mt-6 mb-6 shadow-lg' />
       <div className='mb-8'>
         <h1 className='text-2xl text-zinc-100 font-bold mb-4 drop-shadow-lg'>
-          {info.recommendations.length > 0 ? 'Recommended for You' : 'Similar tvs'}
+          {info.recommendations.length > 0 ? 'Recommended for You' : 'Similar movies'}
         </h1>
         <HorizontalCards
           data={
@@ -160,4 +160,4 @@ const tvdetail = () => {
   );
 };
 
-export default tvdetail;
+export default moviedetail;
