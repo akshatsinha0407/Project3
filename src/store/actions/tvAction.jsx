@@ -24,7 +24,7 @@ export const asyncloadtv = (id) => async (dispatch, getState) => {
         }
         
         dispatch(loadtv(theyltimatedetails)); // Add dispatch to update store
-        console.log(theyltimatedetails);
+        
     }
     catch (error) {
         console.error("Error loading tv details:", error);

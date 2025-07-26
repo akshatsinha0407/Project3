@@ -12,6 +12,16 @@ const TvDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Debug logging
+  {/*
+  console.log("TvDetail Debug:", {
+    id,
+    pathname,
+    info,
+    videos: info?.videos,
+    hasVideoKey: !!info?.videos?.key
+  });
+*/}
   useEffect(() => {
     dispatch(asyncloadtv(id));
     return () => {
@@ -19,10 +29,18 @@ const TvDetail = () => {
     };
   }, [id, dispatch]);
 
+  // Placeholder image URL
+  const noImagePlaceholder = 'https://via.placeholder.com/500x750/6556CD/white?text=No+Image+Available';
+  const noBackdropPlaceholder = 'https://via.placeholder.com/1920x1080/1F1E24/6556CD?text=No+Image+Available';
+
   return info ? (
     <div
       style={{
-        background: `linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.5), rgba(0,0,0,.8)), url(https://image.tmdb.org/t/p/original/${info.details.backdrop_path})`,
+        background: `linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.5), rgba(0,0,0,.8)), url(${
+          info.details.backdrop_path 
+            ? `https://image.tmdb.org/t/p/original/${info.details.backdrop_path}`
+            : noBackdropPlaceholder
+        })`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -55,12 +73,32 @@ const TvDetail = () => {
         )}
       </nav>
 
+    
+      {/* Debug Info - Remove this in production */}
+     {/*
+      <div className='bg-black/50 text-white p-2 rounded mb-3 text-xs'>
+        <strong>Debug:</strong> Video Key: {info.videos?.key || 'No video'} | 
+        Video Type: {info.videos?.type || 'N/A'} |
+        Videos Available: {info.videos ? 'Yes' : 'No'}
+        {info.videos && (
+          <div>Video Details: {JSON.stringify(info.videos)}</div>
+        )}
+      </div>
+      */}
+
       {/* Poster + Content */}
       <div className='w-full flex mt-3'>
         <img
           className='shadow-xl hover:shadow-[8px_17px_50px_8px_rgba(101,86,205,0.4)] h-[40vh] object-cover rounded-xl transition-all duration-500 hover:scale-105 border border-white/20'
-          src={`https://image.tmdb.org/t/p/original/${info.details.backdrop_path || info.details.poster_path}`}
+          src={
+            info.details.backdrop_path || info.details.poster_path
+              ? `https://image.tmdb.org/t/p/original/${info.details.backdrop_path || info.details.poster_path}`
+              : noImagePlaceholder
+          }
           alt={info.details.name || info.details.original_name || "TV Show"}
+          onError={(e) => {
+            e.target.src = noImagePlaceholder;
+          }}
         />
 
         <div className='content ml-[5%]'>
@@ -110,17 +148,35 @@ const TvDetail = () => {
               : "N/A"}
           </p>
 
-     {/*
+          {/* Enhanced Trailer Button with Debug */}
           <div className='flex gap-4 mt-4'>
-            <Link
-              className='bg-gradient-to-r from-[#6556CD] to-[#8B5FBF] hover:from-[#7B6BD9] hover:to-[#9D71D1] text-white font-bold py-3 px-6 rounded-xl shadow-xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2'
-              to={`${pathname}/trailer`}
+            {info.videos?.key ? (
+              <Link
+                className='bg-gradient-to-r from-[#6556CD] to-[#8B5FBF] hover:from-[#7B6BD9] hover:to-[#9D71D1] text-white font-bold py-3 px-6 rounded-xl shadow-xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2'
+                to={`${pathname}/trailer`}
+                onClick={() => console.log("Navigating to trailer with video:", info.videos)}
+              >
+                <i className="ri-play-fill text-xl"></i>
+                Play Trailer ({info.videos.type})
+              </Link>
+            ) : (
+              <div className='bg-gray-600 text-gray-300 font-bold py-3 px-6 rounded-xl shadow-xl flex items-center gap-2 cursor-not-allowed opacity-50'>
+                <i className="ri-play-fill text-xl"></i>
+                No Trailer Available
+              </div>
+            )}
+       
+            {/* Debug button - Remove in production */}
+               {/*  
+            <button
+              onClick={() => console.log("Full info object:", info)}
+              className='bg-red-600 text-white px-4 py-2 rounded text-xs'
             >
-              <i className="ri-play-fill text-xl"></i>
-              Play Trailer
-            </Link>
+              Debug Log
+            </button>
+            */}
           </div>
-          */}
+          
         </div>
       </div>
 
@@ -139,6 +195,9 @@ const TvDetail = () => {
                   className='w-[6vh] h-[6vh] object-cover rounded-lg mr-3 shadow hover:shadow-xl hover:shadow-[#6556CD]/50 transition-all duration-300 hover:scale-110 hover:-translate-y-1 border border-white/20'
                   src={`https://image.tmdb.org/t/p/original/${w.logo_path}`}
                   alt={w.provider_name}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/60x60/6556CD/white?text=N/A';
+                  }}
                 />
               ))}
             </div>
@@ -159,6 +218,9 @@ const TvDetail = () => {
                     ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
                     : 'https://via.placeholder.com/80x80/6556CD/white?text=N/A'}
                   alt={actor.name}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/80x80/6556CD/white?text=N/A';
+                  }}
                 />
                 <p className='text-xs text-zinc-200 font-medium'>{actor.name}</p>
                 <p className='text-xs text-zinc-400'>{actor.character}</p>
@@ -169,7 +231,8 @@ const TvDetail = () => {
       )}
 
       {/* Seasons Section */}
-    {/*  {info.details.seasons?.length > 0 && (
+      {/*
+      {info.details.seasons?.length > 0 && (
         <div className='w-full mt-5'>
           <h1 className='text-2xl text-zinc-100 font-bold mb-4 drop-shadow-lg'>Seasons</h1>
           <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4'>
@@ -179,11 +242,14 @@ const TvDetail = () => {
               .map((season, index) => (
                 <div key={index} className='text-center'>
                   <img
-                    className='w-full h-[200px] object-cover rounded-lg mb-2 shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 border border-white/20'
+                    className='w-full h-[200px] object-cover rounded-lg mb-2 shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 border flex items-center border-white/20'
                     src={season.poster_path
                       ? `https://image.tmdb.org/t/p/w300${season.poster_path}`
                       : 'https://via.placeholder.com/300x450/6556CD/white?text=No+Image'}
                     alt={season.name}
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/300x450/6556CD/white?text=No+Image';
+                    }}
                   />
                   <p className='text-sm text-zinc-200 font-medium'>{season.name}</p>
                   <p className='text-xs text-zinc-400'>
@@ -193,7 +259,8 @@ const TvDetail = () => {
               ))}
           </div>
         </div>
-      )} */}
+      )} 
+      */}
 
       {/* Recommendations or Similar Shows */}
       <hr className='border-zinc-600 mt-6 mb-6 shadow-lg' />
@@ -212,7 +279,7 @@ const TvDetail = () => {
         />
        
       </div>
- <Outlet />
+      <Outlet />
     </div>
   ) : (
     <Loading />

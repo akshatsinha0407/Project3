@@ -24,7 +24,7 @@ export const asyncloadmovie = (id) => async (dispatch, gerState) => {
         }
         
         dispatch(loadmovie(theyltimatedetails)); // Add dispatch to update store
-        console.log(theyltimatedetails);
+        
     }
     catch (error) {
         console.error("Error loading movie details:", error);

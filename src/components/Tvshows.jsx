@@ -20,7 +20,7 @@ const Tvshows = () => {
         try {
             const { data } = await axios.get(`/tv/${category}?page=${page}`);
         
-            console.log("data: ", data);
+         {/*   console.log("data: ", data); */}
             if (data.results.length > 0) {
                 setTvshows((prevState) => [...prevState, ...data.results]); // Append new results to existing ones
                 setPage((prevPage) => prevPage + 1); // Increment page number for next fetch
@@ -42,7 +42,7 @@ const Tvshows = () => {
             setTvshows([]); // Reset tvshows data
             GetTvshows();
         }
-        console.log(tvshows);
+       {/* console.log(tvshows); */}
     };
     
     useEffect(() => {

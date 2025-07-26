@@ -6,7 +6,7 @@ const About = () => {
     document.title = "Akshat | About";
 
     return (
-        <div className='w-full min-h-screen bg-gradient-to-br from-[#1f1e24] via-[#252229] to-[#1f1e24]'>
+        <div className='w-full min-h-screen bg-gradient-to-br overflow-auto  from-[#1f1e24] via-[#252229] to-[#1f1e24]'>
             {/* Header */}
             <div className='px-[3%] w-full flex items-center mb-8 pt-4'>
                 <i onClick={() => navigate(-1)} className="ri-arrow-left-line text-3xl hover:text-[#6556CD] text-zinc-400 cursor-pointer transition-colors duration-300 mr-3"></i>

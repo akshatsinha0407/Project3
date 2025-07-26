@@ -11,18 +11,26 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSent(true);
-        setTimeout(() => { setSent(false); setForm({ name: '', email: '', message: '' }); }, 2000);
+        setTimeout(() => {
+            setSent(false);
+            setForm({ name: '', email: '', message: '' });
+        }, 2000);
     };
 
     return (
-        <div className='w-full min-h-screen bg-gradient-to-br from-[#1f1e24] via-[#252229] to-[#1f1e24]'>
+        <div className='w-full  bg-[#1f1e24] flex flex-col overflow-auto justify-between'>
             {/* Header */}
             <div className='px-[3%] w-full flex items-center mb-8 pt-4'>
-                <i onClick={() => navigate(-1)} className="ri-arrow-left-line text-3xl hover:text-[#6556CD] text-zinc-400 cursor-pointer transition-colors duration-300 mr-3"></i>
-                <span className="text-2xl font-semibold bg-gradient-to-r from-[#6556CD] to-[#8b5cf6] bg-clip-text text-transparent">Contact Us</span>
+                <i
+                    onClick={() => navigate(-1)}
+                    className="ri-arrow-left-line text-3xl hover:text-[#6556CD] text-zinc-400 cursor-pointer transition-colors duration-300 mr-3"
+                ></i>
+                <span className="text-2xl font-semibold bg-gradient-to-r from-[#6556CD] to-[#8b5cf6] bg-clip-text text-transparent">
+                    Contact Us
+                </span>
             </div>
 
-            <div className='px-[3%] pb-8 max-w-4xl mx-auto'>
+            <div className='px-[3%] pb-4 max-w-4xl mx-auto'>
                 {/* Hero */}
                 <div className='text-center mb-12'>
                     <h1 className='text-4xl font-bold text-white mb-4'>💬 Let's Connect</h1>
@@ -36,7 +44,7 @@ const Contact = () => {
                             <i className="ri-mail-send-line text-[#6556CD] mr-3"></i>
                             Drop a Message
                         </h2>
-                        
+
                         {sent ? (
                             <div className='text-center py-12'>
                                 <div className='w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4'>
@@ -51,7 +59,7 @@ const Contact = () => {
                                     type="text"
                                     placeholder="Your Name"
                                     value={form.name}
-                                    onChange={(e) => setForm({...form, name: e.target.value})}
+                                    onChange={(e) => setForm({ ...form, name: e.target.value })}
                                     className='w-full px-4 py-3 bg-[#1f1e24] border border-[#3a3843] rounded-lg text-white focus:border-[#6556CD] focus:outline-none transition-colors'
                                     required
                                 />
@@ -59,14 +67,14 @@ const Contact = () => {
                                     type="email"
                                     placeholder="your.email@example.com"
                                     value={form.email}
-                                    onChange={(e) => setForm({...form, email: e.target.value})}
+                                    onChange={(e) => setForm({ ...form, email: e.target.value })}
                                     className='w-full px-4 py-3 bg-[#1f1e24] border border-[#3a3843] rounded-lg text-white focus:border-[#6556CD] focus:outline-none transition-colors'
                                     required
                                 />
                                 <textarea
                                     placeholder="Your message..."
                                     value={form.message}
-                                    onChange={(e) => setForm({...form, message: e.target.value})}
+                                    onChange={(e) => setForm({ ...form, message: e.target.value })}
                                     rows={4}
                                     className='w-full px-4 py-3 bg-[#1f1e24] border border-[#3a3843] rounded-lg text-white focus:border-[#6556CD] focus:outline-none transition-colors resize-none'
                                     required
@@ -91,7 +99,10 @@ const Contact = () => {
                                 { icon: "ri-phone-line", title: "Phone", value: "+91 722302xxxx", color: "text-green-400" },
                                 { icon: "ri-map-pin-line", title: "Location", value: "Bhopal, India", color: "text-red-400" }
                             ].map((contact, i) => (
-                                <div key={i} className='bg-[#2a2830] rounded-lg p-4 border border-[#3a3843] hover:border-[#6556CD] transition-all duration-300'>
+                                <div
+                                    key={i}
+                                    className='bg-[#2a2830] rounded-lg p-4 border border-[#3a3843] hover:border-[#6556CD] transition-all duration-300'
+                                >
                                     <div className='flex items-center'>
                                         <i className={`${contact.icon} text-xl ${contact.color} mr-4`}></i>
                                         <div>
@@ -112,14 +123,14 @@ const Contact = () => {
                             <div className='flex space-x-3'>
                                 {[
                                     { icon: "ri-github-line", color: "hover:bg-gray-600", link: "https://github.com/akshatsinha0407" },
-                                    { icon: "ri-linkedin-line", color: "hover:bg-blue-600", link: "https://www.linkedin.com/in/akshat-sinha-66770627a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+                                    { icon: "ri-linkedin-line", color: "hover:bg-blue-600", link: "https://www.linkedin.com/in/akshat-sinha-66770627a" },
                                     { icon: "ri-twitter-line", color: "hover:bg-sky-500", link: "https://x.com/akshat_sinha4?s=09" },
-                                    { icon: "ri-instagram-line", color: "hover:bg-pink-500", link: "https://www.instagram.com/ronak.sinha?igsh=MTk0YTZncnk4bjEycA==" }
+                                    { icon: "ri-instagram-line", color: "hover:bg-pink-500", link: "https://www.instagram.com/ronak.sinha" }
                                 ].map((social, i) => (
-                                    <a 
-                                        key={i} 
-                                        href={social.link} 
-                                        target="_blank" 
+                                    <a
+                                        key={i}
+                                        href={social.link}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         className={`w-10 h-10 bg-[#1f1e24] rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 ${social.color} hover:scale-110`}
                                     >
